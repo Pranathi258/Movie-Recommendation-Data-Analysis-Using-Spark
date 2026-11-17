@@ -1,0 +1,12 @@
+
+.venv/
+__pycache__/
+*.pyc
+movies.db
+.env
+
+.venv/
+__pycache__/
+*.pyc
+movies.db
+.env
