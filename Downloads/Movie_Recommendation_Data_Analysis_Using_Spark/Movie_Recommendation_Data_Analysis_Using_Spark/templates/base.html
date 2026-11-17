@@ -1,9 +1,0 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MovieVerse | Movie Recommendation</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head><body>
-<header class="top"><a class="brand" href="/">🎬 MovieVerse</a><nav>
-<a href="/">Movies</a>{% if session.get('user_id') %}<a href="/recommendations">Recommendations</a>
-{% if session.get('role')=='admin' %}<a href="/admin">Admin</a>{% endif %}
-<span class="welcome">Hi, {{ session.get('username') }}</span><a href="/logout">Logout</a>
-{% else %}<a href="/login">Login</a><a href="/register" class="navbutton">Register</a>{% endif %}</nav></header>
-<main>{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}{% for category,message in messages %}<div class="flash {{category}}">{{message}}</div>{% endfor %}{% endif %}{% endwith %}{% block content %}{% endblock %}</main>
-<footer>MovieVerse · Movie Recommendation Data Analysis Using Spark</footer></body></html>

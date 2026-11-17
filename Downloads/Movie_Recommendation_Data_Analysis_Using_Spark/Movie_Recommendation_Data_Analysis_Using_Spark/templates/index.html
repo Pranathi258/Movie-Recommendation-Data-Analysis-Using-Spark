@@ -1,8 +1,0 @@
-{% extends "base.html" %}{% block content %}
-<section class="hero"><div><p class="eyebrow">DISCOVER YOUR NEXT FAVORITE</p><h1>Movies for every mood.</h1><p>Explore Telugu hits and films across Indian and international languages.</p></div></section>
-<form class="filters" method="get"><input name="search" value="{{search}}" placeholder="Search title or genre...">
-<select name="language"><option>All</option>{% for lang in ['Telugu','Tamil','Malayalam','Hindi','English'] %}<option {% if language==lang %}selected{% endif %}>{{lang}}</option>{% endfor %}</select><button>Find movies</button></form>
-<div class="section-heading"><h2>Movie collection</h2><span>{{movies|length}} titles</span></div>
-<div class="movie-grid">{% for movie in movies %}<article class="movie-card"><div class="poster"><span class="poster-icon">🎞️</span><span class="lang">{{movie.language}}</span><span class="year">{{movie.year or '—'}}</span></div>
-<div class="movie-info"><h3>{{movie.title}}</h3><p class="genre">{{movie.genre}}</p><p class="desc">{{movie.description}}</p><div class="ratingline">⭐ <b>{{'%.1f'|format(movie.rating or 0)}}</b> <small>community rating</small></div>
-{% if session.get('user_id') and session.get('role')!='admin' %}<form class="rate-form" action="/rate/{{movie.id}}" method="post"><label>Rate it</label><select name="rating"><option value="5">★★★★★ 5</option><option value="4">★★★★ 4</option><option value="3">★★★ 3</option><option value="2">★★ 2</option><option value="1">★ 1</option></select><button class="small">Save</button></form>{% elif not session.get('user_id') %}<a class="rate-link" href="/login">Login to rate →</a>{% endif %}</div></article>{% else %}<p>No matching movies. Try another search.</p>{% endfor %}</div>{% endblock %}
